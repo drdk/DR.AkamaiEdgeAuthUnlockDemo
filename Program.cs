@@ -24,7 +24,8 @@ uriBuilder.Query = "hdnea="+token;
 
 Console.WriteLine("Unlocked uri:");
 Console.WriteLine(uriBuilder.Uri.ToString());
-var hc = new HttpClient();
+using var hc = new HttpClient();
 var req = new HttpRequestMessage(HttpMethod.Head, uriBuilder.Uri);
 var res = await hc.SendAsync(req);
 Console.WriteLine($"Checked : {res.StatusCode}");
+System.Diagnostics.Debug.Assert(res.StatusCode == System.Net.HttpStatusCode.OK);
